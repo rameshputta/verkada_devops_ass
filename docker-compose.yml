@@ -1,0 +1,28 @@
+version: '3'
+services:
+  verkada_camera_load:
+    build: camera
+    environment:
+      - N_CAMERAS=1
+    networks:
+      - internal
+  server_1:
+    build: server
+    networks:
+      internal:
+        aliases:
+          - lb
+    ports:
+      - 8000
+# enable second server here
+#  server_2:
+#    build: server
+#    networks:
+#      internal:
+#        aliases:
+#          - lb
+#    ports:
+#      - 8000
+
+networks:
+  internal:
